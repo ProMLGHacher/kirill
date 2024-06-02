@@ -1,4 +1,4 @@
-import store from "@/app/store/store";
+import store from "../store/store";
 import { TokensBody, setTokensData } from "@/entities/tokens";
 import { logOutThunk } from "@/features/logOut/model/logOut";
 import { $api } from "@/shared/api/api";

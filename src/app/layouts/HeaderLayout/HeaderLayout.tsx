@@ -1,4 +1,4 @@
-import { Header } from '@/widgets/header/ui/Header'
+import { Header } from '@/widgets/header/'
 import styles from './HeaderLayout.module.scss'
 import { Outlet } from 'react-router-dom'
 
