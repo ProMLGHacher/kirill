@@ -1,0 +1,59 @@
+// Input.module.scss
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+  }
+}
+
+.withPrefix {
+  padding-left: 40px; // Increased padding left if prefix exists
+}
+
+.withSuffix {
+  padding-right: 40px; // Increased padding right if suffix exists
+}
+
+.prefixIcon, .suffixIcon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 20px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+
+.prefixIcon {
+  left: 10px; // Left offset
+}
+
+.suffixIcon {
+  right: 10px; // Right offset
+}
+
+@media (hover: hover) {
+  .input:hover {
+    border-color: #007bff;
+  }
+}
