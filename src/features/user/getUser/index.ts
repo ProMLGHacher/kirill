@@ -1,0 +1,1 @@
+export { getUserThunk } from './model/getUser'

@@ -1,5 +1,6 @@
+import Main from "@/pages/main/Main"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Main from "../../pages/main/Main"
+
 
 const mainRouter = createBrowserRouter([
     {

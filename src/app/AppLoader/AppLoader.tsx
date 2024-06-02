@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
-import { Loader } from "../../shared/ui/Loader/Loader"
+import { useState, useEffect } from "react"
 import { AppRouter } from "../router/AppRouter"
-import Skeleton from "../../shared/ui/Skeleton/Skeleton"
+import { Loader } from "@/shared/ui/Loader/Loader"
+
 
 const AppLoader = () => {
 
@@ -13,13 +13,11 @@ const AppLoader = () => {
         }, 1200)
     }, [])
 
-    if (loading) {
-        return <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', height: '100%' }}>
-            <Skeleton  />
-            <Skeleton  />
-            <Skeleton width="200px" />
-        </div>
-    }
+    // if (loading) {
+    //     return <div style={{ display: 'flex', alignItems:'center', justifyContent: 'center', gap: '20px', height: '100%' }}>
+    //         <Loader />
+    //     </div>
+    // }
 
     return (
         <AppRouter />
