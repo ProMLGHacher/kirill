@@ -17,7 +17,7 @@ export const configureTokenInterceptors = () => {
             return config;
         },
         error => {
-            return Promise.reject(error);
+            return Promise.reject(new Error(error));
         }
     );
 
@@ -25,11 +25,16 @@ export const configureTokenInterceptors = () => {
         (response) => response,
         async (error) => {
             const originalRequest = error.config;
+            const refToken = store.getState().tokensSlice.refreshToken
+
+            if (!refToken) {
+                store.dispatch(logOutThunk())
+                throw new Error('no refresh token')
+            }
             if (error.response.status === 401 && !originalRequest._retry) {
                 originalRequest._retry = true;
 
                 try {
-                    const refToken = store.getState().tokensSlice.refreshToken
 
                     // Вызов API для обновления access и refresh токенов
                     const response = await $api.post<TokensBody>('/api/token', { value: refToken });
@@ -50,7 +55,6 @@ export const configureTokenInterceptors = () => {
                     }
                     else {
                         store.dispatch(logOutThunk())
-                        alert('Ошибка обновления токенов')
                     }
                 }
             }

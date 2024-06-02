@@ -1,3 +1,5 @@
+import { UnauthorizedError } from "./UnauthorizedError"
+
 declare const _brand: unique symbol
 
 declare global {
@@ -14,7 +16,7 @@ declare global {
 
   export type Brand<K, T> = K & { [_brand]: T }
 
-  
+
   /**
    * Type aliases
    */
@@ -35,4 +37,4 @@ declare global {
   export type Color = string
 }
 
-export {}
+export {  }
