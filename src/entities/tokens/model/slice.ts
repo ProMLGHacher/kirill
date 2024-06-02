@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AccessToken, RefreshToken, TokensBody } from "./types";
+import { TokensBody } from "./types";
 import { PayloadAction } from "@reduxjs/toolkit/react";
 import { RootState } from "@/app/store/store";
 
@@ -34,6 +34,7 @@ export const tokensSlice = createSlice({
     initialState,
     reducers: {
         clearTokensData: (state) => {
+            localStorage.removeItem('refreshToken')
             state.accessToken = undefined
             state.refreshToken = undefined
             state.isAuthorized = false

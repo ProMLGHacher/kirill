@@ -7,20 +7,24 @@
     text-decoration: none;
     cursor: pointer;
     border: none;
-    border-radius: 4px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 
-    &.full {
+    &.fullWidth {
         width: 100%;
     }
 
     &.primary {
-        background-color: #007bff;
+        background-color: var(--primary);
         color: white;
     }
 
     &.secondary {
-        background-color: #6c757d;
+        background-color: #E0E0E0;
+        color: white;
+    }
+
+    &.tertiary {
+        background-color: #161213;
         color: white;
     }
 
@@ -32,6 +36,30 @@
     &.danger {
         background-color: #dc3545;
         color: white;
+    }
+
+    &.none {
+        border-radius: 0px;
+    }
+
+    &.sm {
+        border-radius: 10px;
+    }
+
+    &.md {
+        border-radius: 16px;
+    }
+
+    &.xl {
+        border-radius: 50px;
+    }
+
+    &.rounded {
+        border-radius: 0px;
+    }
+
+    &.full {
+        border-radius: 100%;
     }
 
     @media (hover: hover) {

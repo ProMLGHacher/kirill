@@ -37,7 +37,7 @@ export const configureTokenInterceptors = () => {
                 try {
 
                     // Вызов API для обновления access и refresh токенов
-                    const response = await $api.post<TokensBody>('/api/token', { value: refToken });
+                    const response = await $api.post<TokensBody>('/api/restore-token', { value: refToken });
                     const { acsessToken, refreshToken } = response.data;
 
                     store.dispatch(setTokensData({ acsessToken, refreshToken }));

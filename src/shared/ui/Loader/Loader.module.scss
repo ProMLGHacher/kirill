@@ -3,7 +3,7 @@
     width: 60px;
     height: 60px;
     border: 8px solid grey;
-    border-top: 8px solid black;
+    border-top: 8px solid var(--primary);
     animation: spin 2s infinite linear;
 }
 

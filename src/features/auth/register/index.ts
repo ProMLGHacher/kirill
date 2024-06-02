@@ -1,0 +1,1 @@
+export { registerThunk } from './model/register'

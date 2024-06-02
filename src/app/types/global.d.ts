@@ -16,13 +16,14 @@ declare global {
 
   export type Brand<K, T> = K & { [_brand]: T }
 
-
   /**
    * Type aliases
    */
   export type Phone = string
 
   export type Email = string
+
+  export type Password = string
 
   export type Id = string
 
@@ -35,6 +36,9 @@ declare global {
   export type Url = string
 
   export type Color = string
+
+  export type AccessToken = Brand<string, 'AccessToken'>
+  export type RefreshToken = Brand<string, 'RefreshToken'>
 }
 
-export {  }
+export { }

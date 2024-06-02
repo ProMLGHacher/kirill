@@ -12,12 +12,12 @@
   padding: 16px 20px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
   &:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: color-mix(in srgb, var(--primary), white 50%);
+    box-shadow: 0 0 4px color-mix(in srgb, var(--primary), white 50%);
     outline: none;
   }
 
@@ -54,6 +54,6 @@
 
 @media (hover: hover) {
   .input:hover {
-    border-color: #007bff;
+    border-color: color-mix(in srgb, var(--primary), white 50%);
   }
 }

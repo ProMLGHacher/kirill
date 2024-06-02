@@ -5,5 +5,6 @@ export type Role = UserRole | "Guest"
 export type Route = {
     path: string
     element: React.ReactElement
-    roles: Role[]
+    roles: Role[],
+    childrens?: Route[]
 }
