@@ -26,7 +26,7 @@
       "node_modules/@types",
       "types/",
       "node",
-      "react/canary"
+      "node_modules/@types/react/canary"
     ],
     "paths": {
       "@/*": [

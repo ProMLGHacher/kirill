@@ -6,4 +6,6 @@ npm config set legacy-peer-deps false (менял на true чтобы ре ру
 "@types/react-dom": "npm:types-react-dom@rc"
 
 
-в main.tsx убрать import react/canary
+delete canary.d.ts
+
+и короче обновиться на релиз версию 19
