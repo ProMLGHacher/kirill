@@ -2,8 +2,6 @@ import { $api } from "@/shared/api/api";
 import { LoginDto, RegisterDto, RequestLoginBody, RequestRegisterBody } from "./types";
 import { toTokensBody } from "../lib/toTokensBody";
 import { TokensBody } from "../model/types";
-import { isAxiosError } from "axios";
-import { ResponceError } from "@/shared/types/ResponceError";
 
 export const tokensApi = {
     login: async (body: RequestLoginBody): Promise<TokensBody> => {
