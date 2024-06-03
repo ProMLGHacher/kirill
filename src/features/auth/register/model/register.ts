@@ -1,7 +1,5 @@
-import { RootState } from "@/app/store/store";
 import { setTokensData, tokensApi } from "@/entities/tokens";
 import { getUserThunk } from "@/features/user/getUser";
-import { isResponceError } from "@/shared/types/ResponceError";
 import { ThunkConfig } from "@/shared/types/ThunkConfigType";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
