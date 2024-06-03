@@ -1,5 +1,3 @@
-import { UnauthorizedError } from "./UnauthorizedError"
-
 declare const _brand: unique symbol
 
 declare global {
@@ -39,6 +37,11 @@ declare global {
 
   export type AccessToken = Brand<string, 'AccessToken'>
   export type RefreshToken = Brand<string, 'RefreshToken'>
+
+  export function taggedError<T>(name: string, error: T) {
+    console.error(name, error);
+    return error
+  }
 }
 
 export { }

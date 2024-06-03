@@ -50,7 +50,7 @@ export const Header = () => {
                 <Link className={styles.iconLink} to={'/cart'}>
                     <img src="/cart.svg" alt="cart link icon" />
                 </Link>
-                <Link className={styles.iconLink} to={isAuthorized ? '/profile' : '/login'}>
+                <Link className={styles.iconLink} to={isAuthorized ? '/profile' : '/registration'}>
                     <img src="/profile-circle.svg" alt="profile link icon" />
                 </Link>
             </nav>

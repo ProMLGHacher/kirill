@@ -1,18 +1,21 @@
 import { classNames } from '@/shared/utils/classNames/classNames';
 import styles from './Button.module.scss';
+import { Loader } from '../Loader/Loader';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'danger';
-    rouded?: 'none' | 'sm' | 'xl' | 'full';
+    variant?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'danger'
+    rouded?: 'none' | 'sm' | 'xl' | 'full'
     full?: boolean
+    isPending?: boolean
+    disabled?: boolean
 }
 
 const Button: React.FC<ButtonProps> = (
-    { variant = 'primary', full = false, rouded = 'sm', children, ...props }
+    { variant = 'primary', full = false, rouded = 'sm', children, isPending = false, disabled = false, ...props }
 ) => {
     return (
-        <button className={classNames(styles.button, [styles[variant], styles[rouded]], { [styles.fullWidth]: full })} {...props}>
-            {children}
+        <button disabled={disabled} className={classNames(styles.button, [styles[variant], styles[rouded]], { [styles.fullWidth]: full })} {...props}>
+            {isPending ? 'loadinf' : children}
         </button>
     );
 };

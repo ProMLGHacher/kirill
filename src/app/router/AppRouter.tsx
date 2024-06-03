@@ -4,6 +4,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import HeaderLayout from "../layouts/HeaderLayout/HeaderLayout";
 import { Main } from "@/pages/main";
 import { Login } from "@/pages/Login";
+import { Registration } from "@/pages/Register";
 
 
 const routes: Route[] = [
@@ -20,6 +21,11 @@ const routes: Route[] = [
             {
                 path: '/login',
                 element: <Login />,
+                roles: ["Guest"]
+            },
+            {
+                path: '/registration',
+                element: <Registration />,
                 roles: ["Guest"]
             },
         ]

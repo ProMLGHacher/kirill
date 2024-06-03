@@ -26,13 +26,13 @@ export const configureTokenInterceptors = () => {
         async (error) => {
             const originalRequest = error.config;
             const refToken = store.getState().tokensSlice.refreshToken
-
-            if (!refToken) {
-                store.dispatch(logOutThunk())
-                throw new Error('no refresh token')
-            }
             if (error.response.status === 401 && !originalRequest._retry) {
                 originalRequest._retry = true;
+
+                if (!refToken) {
+                    store.dispatch(logOutThunk())
+                    throw new Error('no refresh token')
+                }
 
                 try {
 

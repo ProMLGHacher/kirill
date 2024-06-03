@@ -6,7 +6,6 @@ export type RequestLoginBody = {
 export type RequestRegisterBody = {
     firstName: string,
     lastName: string,
-    phone: Phone,
     email: Email,
     password: Password
 }
