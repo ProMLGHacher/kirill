@@ -1,13 +1,19 @@
 // Button.module.scss
 .button {
-    display: inline-block;
+    display: grid;
+    grid-template-rows: 1fr;
     padding: 16px 20px;
     font-size: 16px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     border: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: fit-content;
+    transition: background-color 0.3s ease, transform 0.2s ease, padding .4s cubic-bezier(0.175, 0.9, 0.32, 1.6);
+
+    &.loading {
+        padding: 16px 28px;
+    }
 
     &.fullWidth {
         width: 100%;
