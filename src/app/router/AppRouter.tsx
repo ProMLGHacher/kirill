@@ -3,6 +3,7 @@ import { Route } from "./types";
 import ProtectedRoute from "./ProtectedRoute";
 import HeaderLayout from "../layouts/HeaderLayout/HeaderLayout";
 import { Main } from "@/pages/main";
+import { Login } from "@/pages/Login";
 
 
 const routes: Route[] = [
@@ -15,7 +16,12 @@ const routes: Route[] = [
                 path: '/',
                 element: <Main />,
                 roles: ["Guest", "Admin", "User"]
-            }
+            },
+            {
+                path: '/login',
+                element: <Login />,
+                roles: ["Guest"]
+            },
         ]
     },
 ]

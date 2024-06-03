@@ -1,0 +1,9 @@
+npm config set legacy-peer-deps false (менял на true чтобы ре ругался на редакс)
+
+
+убрать это из dependecies (https://react.dev/blog/2024/04/25/react-19-upgrade-guide) (потом найти версии)
+"@types/react": "npm:types-react@rc",
+"@types/react-dom": "npm:types-react-dom@rc"
+
+
+в main.tsx убрать import react/canary

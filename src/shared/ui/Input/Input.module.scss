@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+  background-color: transparent;
 }
 
 .input {
@@ -11,9 +12,11 @@
   width: 100%;
   padding: 16px 20px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1.2px solid #FFFFFF;
   border-radius: 10px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: transparent;
+  color: white;
 
   &:focus {
     border-color: color-mix(in srgb, var(--primary), white 50%);

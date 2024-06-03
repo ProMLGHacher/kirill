@@ -25,7 +25,8 @@
     "typeRoots": [
       "node_modules/@types",
       "types/",
-      "node"
+      "node",
+      "react/canary"
     ],
     "paths": {
       "@/*": [
