@@ -5,6 +5,7 @@ import HeaderLayout from "../layouts/HeaderLayout/HeaderLayout";
 import { Main } from "@/pages/main";
 import { Login } from "@/pages/Login";
 import { Registration } from "@/pages/Register";
+import { Profile } from "@/pages/profile";
 
 
 const routes: Route[] = [
@@ -19,14 +20,21 @@ const routes: Route[] = [
                 roles: ["Guest", "Admin", "User"]
             },
             {
+                path: '/profile',
+                element: <Profile />,
+                roles: ["Admin", "User"]
+            },
+            {
                 path: '/login',
                 element: <Login />,
-                roles: ["Guest"]
+                roles: ["Guest"],
+                redirect: '/profile'
             },
             {
                 path: '/registration',
                 element: <Registration />,
-                roles: ["Guest"]
+                roles: ["Guest"],
+                redirect: '/profile'
             },
         ]
     },
@@ -36,7 +44,7 @@ const processRoutes = (routes: Route[]) => {
     return routes.map(route => {
       const processedRoute: any = {
         path: route.path,
-        element: <ProtectedRoute roles={route.roles} element={route.element} />,
+        element: <ProtectedRoute roles={route.roles} element={route.element} redirect={route.redirect} />,
       };
   
       if (route.childrens) {

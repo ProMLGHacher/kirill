@@ -8,15 +8,15 @@ import { selectUserRole } from '@/entities/user';
 interface ProtectedRouteProps {
     element: React.ReactElement;
     roles: Role[];
+    redirect?: string
 }
 
-const ProtectedRoute = ({ element, roles }: ProtectedRouteProps) => {
+const ProtectedRoute = ({ element, roles, redirect = '/' }: ProtectedRouteProps) => {
 
     const userRole = useAppSelector(selectUserRole)
 
     if (!roles.includes(userRole ?? 'Guest')) {
-        // Если у пользователя нет необходимой роли, перенаправляем на страницу 403
-        return <Navigate to="/403" replace />;
+        return <Navigate to={redirect} replace />;
     }
 
     return element;

@@ -6,5 +6,6 @@ export type Route = {
     path: string
     element: React.ReactElement
     roles: Role[],
-    childrens?: Route[]
+    childrens?: Route[],
+    redirect?: string
 }

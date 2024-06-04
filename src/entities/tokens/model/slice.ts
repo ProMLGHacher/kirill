@@ -40,7 +40,8 @@ export const tokensSlice = createSlice({
             state.isAuthorized = false
         },
         setTokensData: (state, action: PayloadAction<TokensBody>) => {
-            state.accessToken = action.payload.acsessToken
+            localStorage.setItem('refreshToken', action.payload.refreshToken)
+            state.accessToken = action.payload.accessToken
             state.refreshToken = action.payload.refreshToken
             state.isAuthorized = true
         }

@@ -1,4 +1,4 @@
 export type TokensBody = {
-    acsessToken: AccessToken,
+    accessToken: AccessToken,
     refreshToken: RefreshToken
 }

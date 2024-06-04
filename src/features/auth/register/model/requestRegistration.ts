@@ -1,5 +1,4 @@
-import { setTokensData, tokensApi } from "@/entities/tokens";
-import { getUserThunk } from "@/features/user/getUser";
+import { tokensApi } from "@/entities/tokens";
 import { ThunkConfig } from "@/shared/types/ThunkConfigType";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
@@ -11,19 +10,20 @@ type Props = {
     password: Password
 }
 
-export const registerThunk = createAsyncThunk<void, Props, ThunkConfig>(
-    'auth/registerThunk',
-    async (body, { dispatch, rejectWithValue }) => {
+export const requestRegistrationThunk = createAsyncThunk<void, Props, ThunkConfig>(
+    'auth/requestRegistrationThunk',
+    async (body, { rejectWithValue }) => {
         try {
-            const tokens = await tokensApi.register(body)
-            dispatch(setTokensData(tokens))
-            dispatch(getUserThunk())
+            await tokensApi.requestRegistration(body)
         } catch (error) {
-            console.error('auth/registerThunk', error);
+            console.error('auth/requestRegistrationThunk', error);
 
             if (isAxiosError(error)) {
                 if (error.response?.status === 400) {
                     return rejectWithValue('Данные введены не корректно')
+                }
+                if (error.response?.status === 409) {
+                    return rejectWithValue('Email уже существует')
                 }
             }
 

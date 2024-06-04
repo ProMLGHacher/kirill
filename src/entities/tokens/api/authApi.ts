@@ -1,15 +1,22 @@
 import { $api } from "@/shared/api/api";
-import { LoginDto, RegisterDto, RequestLoginBody, RequestRegisterBody } from "./types";
+import { LoginDto, RegisterBody, RegisterDto, RequestLoginBody, RequestRegistrationBody } from "./types";
 import { toTokensBody } from "../lib/toTokensBody";
 import { TokensBody } from "../model/types";
 
 export const tokensApi = {
     login: async (body: RequestLoginBody): Promise<TokensBody> => {
-        const responce = $api.post<LoginDto>('/api/signin', body)
-        return toTokensBody((await responce).data)
+        const responce = await $api.post<LoginDto>('/api/signin', body)
+        return toTokensBody(responce.data)
     },
-    register: async (body: RequestRegisterBody): Promise<TokensBody> => {
-        const responce = await $api.post<RegisterDto>('/api/apply-registration', body)
+    requestRegistration: async (body: RequestRegistrationBody): Promise<void> => {
+        await $api.post('/api/apply-registration', body)
+    },
+    register: async (body: RegisterBody): Promise<TokensBody> => {
+        const responce = await $api.post<RegisterDto>('/api/signup', {
+            "identifier": body.email,
+            "code": body.code,
+            "method": "Email"
+        })
         return toTokensBody(responce.data)
     }
 }

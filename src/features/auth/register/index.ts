@@ -1,1 +1,2 @@
-export { registerThunk } from './model/register'
+export { requestRegistrationThunk } from './model/requestRegistration'
+export { registerThunk } from './model/registerThunk'

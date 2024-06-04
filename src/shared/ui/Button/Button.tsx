@@ -1,7 +1,6 @@
 import { classNames } from '@/shared/utils/classNames/classNames';
 import styles from './Button.module.scss';
 import { Loader } from '../Loader/Loader';
-import { useRef, useEffect } from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'danger'

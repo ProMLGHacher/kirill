@@ -4,36 +4,42 @@ import Input from '@/shared/ui/Input/Input'
 import Button from '@/shared/ui/Button/Button'
 import { useActionState } from 'react'
 import { useAppDispatch } from '@/app/hooks/storeHooks'
+import { loginThunk } from '@/features/auth/login'
 
 export const Login = () => {
 
     const dispatch = useAppDispatch()
 
-    const [state, submitAction, isPending] = useActionState<null | string, FormData>(
-        async (previousState, formData) => {
-            
+    const [error, submitAction, isPending] = useActionState<null | string, FormData>(
+        async (_, formData) => {
 
-            await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(null)
-                }, 2000)
-            })
+            const email = formData.get('email')?.toString().trim()
+            const password = formData.get('password')?.toString().trim()
+
+            if (!email || !password) {
+                return 'Не все данные введены'
+            }
+
+            try {
+                await dispatch(loginThunk({
+                    email: email,
+                    password: password
+                })).unwrap()
+            } catch (error) {
+                return `${error}`
+            }
 
             return null
         }, null)
 
     return (
         <div className={classNames(styles.login, ['container'])}>
-            <p>{`${state}`}</p>
             <form action={submitAction} className={styles.form}>
-                <h1>Регистрация</h1>
-                <div className={styles.flex}>
-                    <Input placeholder='Имя' name='name' />
-                    <Input placeholder='Фамилия' name='firstname' />
-                </div>
+                <h1>Вход</h1>
                 <Input placeholder='Email' type='email' name='email' />
                 <Input placeholder='Пароль' type='password' name='password' />
-                <Button isPending={isPending}>Зарегистрироваться</Button>
+                <Button style={{ width: '50%' }} isPending={isPending}>Войти</Button>
+                <p style={{ textAlign: 'center', color: 'red' }}>{error}</p>
             </form>
         </div>
     )

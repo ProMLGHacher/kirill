@@ -1,10 +1,9 @@
 import { classNames } from '@/shared/utils/classNames/classNames'
 import styles from './Registration.module.scss'
-import Input from '@/shared/ui/Input/Input'
-import Button from '@/shared/ui/Button/Button'
 import { useActionState } from 'react'
 import { useAppDispatch } from '@/app/hooks/storeHooks'
-import { registerThunk } from '@/features/auth/register'
+import { requestRegistrationThunk } from '@/features/auth/register'
+import { RegistrationForm } from '@/widgets/registrationForm/import'
 
 export const Registration = () => {
 
@@ -24,7 +23,7 @@ export const Registration = () => {
 
 
             try {
-                await dispatch(registerThunk({
+                await dispatch(requestRegistrationThunk({
                     email: email,
                     firstName: firstname,
                     lastName: name,
@@ -39,17 +38,7 @@ export const Registration = () => {
 
     return (
         <div className={classNames(styles.registration, ['container'])}>
-            <p>{`${error}`}</p>
-            <form action={submitAction} className={styles.form}>
-                <h1>Регистрация</h1>
-                <div className={styles.flex}>
-                    <Input placeholder='Имя' name='name' required />
-                    <Input placeholder='Фамилия' name='firstname' required />
-                </div>
-                <Input placeholder='Email' type='email' name='email' required />
-                <Input placeholder='Пароль' type='password' name='password' required />
-                <Button isPending={isPending}>Зарегистрироваться</Button>
-            </form>
+            <RegistrationForm />
         </div>
     )
 }

@@ -37,12 +37,12 @@ export const configureTokenInterceptors = () => {
                 try {
 
                     // Вызов API для обновления access и refresh токенов
-                    const response = await $api.post<TokensBody>('/api/restore-token', { value: refToken });
-                    const { acsessToken, refreshToken } = response.data;
+                    const response = await $api.patch<TokensBody>('/api/restore-token', { value: refToken });
+                    const { accessToken, refreshToken } = response.data;
 
-                    store.dispatch(setTokensData({ acsessToken, refreshToken }));
+                    store.dispatch(setTokensData({ accessToken, refreshToken }));
 
-                    originalRequest.headers.Authorization = `${acsessToken}`;
+                    originalRequest.headers.Authorization = `${accessToken}`;
                     return $api(originalRequest);
                 } catch (error) {
                     if (isAxiosError(error)) {

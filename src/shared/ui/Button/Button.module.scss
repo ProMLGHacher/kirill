@@ -1,4 +1,3 @@
-// Button.module.scss
 .button {
     display: grid;
     grid-template-rows: 1fr;
@@ -10,6 +9,10 @@
     border: none;
     width: fit-content;
     transition: background-color 0.3s ease, transform 0.2s ease, padding .4s cubic-bezier(0.175, 0.9, 0.32, 1.6);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &.loading {
         padding: 16px 28px;
