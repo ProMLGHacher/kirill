@@ -50,3 +50,9 @@ select::-ms-expand {
   max-width: 1920px;
   margin-inline: auto;
 }
+
+.row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}

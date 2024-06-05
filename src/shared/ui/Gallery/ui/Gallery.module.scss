@@ -1,0 +1,31 @@
+.gallery {
+    width: 100%;
+    user-select: none;
+}
+
+.img {
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+
+.slider {
+    display: flex;
+    gap: 20px;
+    scroll-behavior: smooth;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+.slider:hover html  {
+    overflow-y: hidden;
+}
+
+.imgButton {
+    width: calc(25% - 15px);
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    background-color: transparent;
+    border: none;
+    scroll-snap-align: start;
+    cursor: pointer;
+}

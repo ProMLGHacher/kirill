@@ -24,27 +24,57 @@
 
     &.primary {
         background-color: var(--primary);
-        color: white;
+        color: #FAFAFA;
+
+        &.outlined {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
     }
 
     &.secondary {
-        background-color: #E0E0E0;
+        background-color: #161213;
         color: white;
+
+        &.outlined {
+            background-color: transparent;
+            border: 1px solid #161213;
+            color: #161213;
+        }
     }
 
     &.tertiary {
         background-color: #161213;
         color: white;
+
+        &.outlined {
+            background-color: transparent;
+            border: 1px solid #161213;
+            color: #161213;
+        }
     }
 
     &.success {
         background-color: #28a745;
         color: white;
+
+        &.outlined {
+            background-color: transparent;
+            border: 1px solid #28a745;
+            color: #28a745;
+        }
     }
 
     &.danger {
         background-color: #dc3545;
         color: white;
+
+        &.outlined {
+            background-color: transparent;
+            border: 1px solid #dc3545;
+            color: #dc3545;
+        }
     }
 
     &.none {

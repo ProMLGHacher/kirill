@@ -1,4 +1,4 @@
-import { createBrowserRouter, Link, Navigate, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, Link, Navigate, Outlet, RouterProvider } from "react-router-dom"
 import { Route } from "./types";
 import ProtectedRoute from "./ProtectedRoute";
 import HeaderLayout from "../layouts/HeaderLayout/HeaderLayout";
@@ -6,6 +6,7 @@ import { Main } from "@/pages/main";
 import { Login } from "@/pages/Login";
 import { Registration } from "@/pages/Register";
 import { Profile } from "@/pages/profile";
+import { ProfileNavigationLayout } from "../layouts/ProfileNavigationLayout/ProfileNavigationLayout";
 
 
 const routes: Route[] = [
@@ -21,8 +22,15 @@ const routes: Route[] = [
             },
             {
                 path: '/profile',
-                element: <Profile />,
-                roles: ["Admin", "User"]
+                element: <ProfileNavigationLayout />,
+                roles: ["Admin", "User"],
+                childrens: [
+                    {
+                        path: '/profile/',
+                        element: <Profile />,
+                        roles: ['Admin', 'User']
+                    }
+                ]
             },
             {
                 path: '/login',
@@ -42,18 +50,21 @@ const routes: Route[] = [
 
 const processRoutes = (routes: Route[]) => {
     return routes.map(route => {
-      const processedRoute: any = {
-        path: route.path,
-        element: <ProtectedRoute roles={route.roles} element={route.element} redirect={route.redirect} />,
-      };
-  
-      if (route.childrens) {
-        processedRoute.children = processRoutes(route.childrens);
-      }
-  
-      return processedRoute;
+        const processedRoute: any = {
+            path: route.path,
+            element: <ProtectedRoute skeleton={route.skeleton ? <>
+                {route.skeleton}
+                <Outlet />
+            </> : undefined} roles={route.roles} element={route.element} redirect={route.redirect} />,
+        };
+
+        if (route.childrens) {
+            processedRoute.children = processRoutes(route.childrens);
+        }
+
+        return processedRoute;
     });
-  };
+};
 
 const router = createBrowserRouter([
     ...processRoutes(routes),
@@ -74,6 +85,8 @@ export const AppRouter = () => {
 
 
     return (
-        <RouterProvider router={router} />
+        <>
+            <RouterProvider router={router} />
+        </>
     )
 }

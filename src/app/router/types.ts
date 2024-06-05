@@ -8,4 +8,5 @@ export type Route = {
     roles: Role[],
     childrens?: Route[],
     redirect?: string
+    skeleton?: React.ReactElement
 }
