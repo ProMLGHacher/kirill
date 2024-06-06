@@ -22,11 +22,8 @@ const Select = <T,>({ width, options, onSelect, placeholder = "Select an option"
   };
 
   const handleSelect = (option: Option<T>) => {
-    console.log('1');
     setSelectedOption(option);
-    console.log('2');
     setIsOpen(false);
-    console.log('3');
     if (onSelect) {
       onSelect(option.value);
     }

@@ -56,3 +56,7 @@ select::-ms-expand {
   gap: 20px;
   align-items: center;
 }
+
+.primary {
+  color: var(--primary);
+}
