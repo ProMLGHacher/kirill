@@ -1,4 +1,4 @@
-import { setUser, userApi } from "@/entities/user";
+import { userApi } from "@/entities/user";
 import { ThunkConfig } from "@/shared/types/ThunkConfigType";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
@@ -15,8 +15,7 @@ export const updateUserPhoneThunk = createAsyncThunk<void, Props, ThunkConfig>(
             if (body.phone.length !== 10 || !Number.isInteger(Number(body.phone))) {
                 throw new Error('Некорректный номер телефона')
             }
-            const user = await userApi.updatePhone({ phoneNumber: body.phone })
-            // dispatch(setUser(user))
+            await userApi.updatePhone({ phoneNumber: body.phone })
             dispatch(getUserThunk())
         } catch (error: any) {
             console.error('user/updateUserPhoneThunk', error);

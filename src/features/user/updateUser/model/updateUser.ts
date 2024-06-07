@@ -1,4 +1,4 @@
-import { setUser, userApi } from "@/entities/user";
+import { userApi } from "@/entities/user";
 import { ThunkConfig } from "@/shared/types/ThunkConfigType";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
@@ -13,8 +13,7 @@ export const updateUserThunk = createAsyncThunk<void, Props, ThunkConfig>(
     'user/updateUserThunk',
     async (body, { dispatch, rejectWithValue }) => {
         try {
-            const user = await userApi.updateUserData(body)
-            // dispatch(setUser(user))
+            await userApi.updateUserData(body)
             dispatch(getUserThunk())
         } catch (error) {
             console.error('user/updateUserThunk', error);

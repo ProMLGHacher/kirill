@@ -1,4 +1,4 @@
-import { setUser, userApi } from "@/entities/user";
+import { userApi } from "@/entities/user";
 import { ThunkConfig } from "@/shared/types/ThunkConfigType";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
@@ -15,8 +15,7 @@ export const updateUserEmailThunk = createAsyncThunk<void, Props, ThunkConfig>(
             if (!body.email || !body.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
                 throw new Error('Некорректный email')
             }
-            const user = await userApi.updateEmail({ email: body.email })
-            // dispatch(setUser(user))
+            await userApi.updateEmail({ email: body.email })
             dispatch(getUserThunk())
         } catch (error: any) {
             console.error('user/updateUserEmailThunk', error);

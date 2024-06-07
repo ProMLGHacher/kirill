@@ -2,17 +2,34 @@ import LogOutButton from '@/features/logOut/ui/LogOutButton'
 import styles from './Profile.module.scss'
 import Input from '@/shared/ui/Input/Input'
 import Button from '@/shared/ui/Button/Button'
-import { useActionState, useState } from 'react'
+import { useActionState, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/hooks/storeHooks'
 import { selectUser } from '@/entities/user'
 import { updateUserThunk, updateUserEmailThunk, updateUserPhoneThunk } from '@/features/user/updateUser'
 import { mapPhone } from '@/shared/lib/mapPhone/mapPhone'
+import { getUserThunk } from '@/features/user/getUser'
 
 export const Profile = () => {
 
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(getUserThunk())
+    }, [])
+
     const user = useAppSelector(selectUser)
 
-    const dispatch = useAppDispatch()
+    const [isSuccess, setIsSuccess] = useState(false)
+
+    useEffect(() => {
+        if (isSuccess) {
+            setTimeout(() => {
+                setIsSuccess(false)
+                setDataChanged(false)
+            }, 1500)
+        }
+    }, [isSuccess])
+
 
     const [error, submitAction, isPending] = useActionState<null | string, FormData>(
         async (_, formData) => {
@@ -72,6 +89,8 @@ export const Profile = () => {
                 return `${error}`
             }
 
+            setIsSuccess(true)
+
             return null
         }, null)
 
@@ -96,7 +115,7 @@ export const Profile = () => {
                 <img style={{ width: '22px', height: '22px' }} src={'/profile-circle.svg'} alt="" />
                 <h1>Настройки учетной записи</h1>
             </div>
-            <form action={submitAction}>
+            <form key={JSON.stringify(user)} action={submitAction}>
                 <div className={styles.grid}>
                     <label htmlFor="name">
                         Имя
@@ -115,8 +134,8 @@ export const Profile = () => {
                         <Input value={mapPhone(phone || '')} onChange={phoneChangeHandle} id='phone' name='phone' />
                     </label>
                 </div>
-                <div className='row' style={{ marginTop: '28px', display: 'grid', gridTemplateColumns: '1fr 1fr', maxWidth: '30%' }}>
-                    <Button full isPending={isPending} className={styles.saveButton} disabled={!dataChanged}>Сохранить</Button>
+                <div style={{ marginTop: '28px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', maxWidth: '30%' }}>
+                    <Button full isPending={isPending} className={styles.saveButton} disabled={!dataChanged} variant={isSuccess ? 'success' : 'primary'} >{isSuccess ? 'Успешно' : 'Сохранить'}</Button>
                     <LogOutButton full />
                 </div>
                 <p style={{ marginTop: '20px', color: 'red' }}>{error}</p>
