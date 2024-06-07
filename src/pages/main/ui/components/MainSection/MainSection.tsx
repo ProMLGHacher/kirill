@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/utils/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import styles from './MainSection.module.scss'
 import { Link } from 'react-router-dom'
 

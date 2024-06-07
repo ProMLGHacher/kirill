@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import styles from './ProfileNavigationLayout.module.scss'
-import { classNames } from '@/shared/utils/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 
 const nav = [
     {

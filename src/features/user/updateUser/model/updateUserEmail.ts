@@ -5,24 +5,27 @@ import { isAxiosError } from "axios";
 import { getUserThunk } from "../../getUser";
 
 type Props = {
-    firstName: string
-    lastName: string
+    email: string
 }
 
-export const updateUserThunk = createAsyncThunk<void, Props, ThunkConfig>(
-    'user/updateUserThunk',
+export const updateUserEmailThunk = createAsyncThunk<void, Props, ThunkConfig>(
+    'user/updateUserEmailThunk',
     async (body, { dispatch, rejectWithValue }) => {
         try {
-            const user = await userApi.updateUserData(body)
+            if (!body.email || !body.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                throw new Error('Некорректный email')
+            }
+            const user = await userApi.updateEmail({ email: body.email })
             // dispatch(setUser(user))
             dispatch(getUserThunk())
-        } catch (error) {
-            console.error('user/updateUserThunk', error);
+        } catch (error: any) {
+            console.error('user/updateUserEmailThunk', error);
             if (isAxiosError(error)) {
                 if (error.response?.status === 400) {
                     return rejectWithValue('Некорректные данные')
                 }
             }
+            return rejectWithValue(error.message)
         }
     }
 )

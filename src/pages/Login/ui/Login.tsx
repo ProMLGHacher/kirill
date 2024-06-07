@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/utils/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import styles from './Login.module.scss'
 import Input from '@/shared/ui/Input/Input'
 import Button from '@/shared/ui/Button/Button'

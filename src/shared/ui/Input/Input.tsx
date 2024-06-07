@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import styles from './Input.module.scss';
-import { classNames } from '@/shared/utils/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   prefixIcon?: React.ReactNode;

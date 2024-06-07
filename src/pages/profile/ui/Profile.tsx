@@ -4,8 +4,9 @@ import Input from '@/shared/ui/Input/Input'
 import Button from '@/shared/ui/Button/Button'
 import { useActionState, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/hooks/storeHooks'
-import { User, selectUser } from '@/entities/user'
-import { updateUserThunk } from '@/features/user/updateUser/model/updateUser'
+import { selectUser } from '@/entities/user'
+import { updateUserThunk, updateUserEmailThunk, updateUserPhoneThunk } from '@/features/user/updateUser'
+import { mapPhone } from '@/shared/lib/mapPhone/mapPhone'
 
 export const Profile = () => {
 
@@ -21,17 +22,52 @@ export const Profile = () => {
             const phone = formData.get('phone')?.toString().trim()
             const email = formData.get('email')?.toString().trim()
 
-            if (!firstName || !lastName) {
-                setDataChanged(false)
+            if (!firstName || !lastName || !email) {
                 return 'Не все данные введены'
             }
 
+            if (phone?.length && phone.length !== 10) {
+                return 'Некорректный номер телефона'
+            }
+
+            if (email && !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                return 'Некорректный email'
+            }
+
             try {
-                await dispatch(updateUserThunk({
-                    firstName: firstName,
-                    lastName: lastName
-                })).unwrap()
+                if (firstName && lastName && (user?.firstName !== firstName || user?.lastName !== lastName)) {
+                    await dispatch(updateUserThunk({
+                        firstName: firstName,
+                        lastName: lastName
+                    })).unwrap()
+                }
             } catch (error) {
+                console.log(`${error}`);
+
+                setDataChanged(false)
+                return `${error}`
+            }
+
+            try {
+                if (phone && user?.phone !== phone) {
+                    await dispatch(updateUserPhoneThunk({
+                        phone: phone
+                    })).unwrap()
+                }
+            } catch (error) {
+                console.log(`${error}`);
+                setDataChanged(false)
+                return `${error}`
+            }
+
+            try {
+                if (email && user?.email !== email) {
+                    await dispatch(updateUserEmailThunk({
+                        email: email
+                    })).unwrap()
+                }
+            } catch (error) {
+                console.log(`${error}`);
                 setDataChanged(false)
                 return `${error}`
             }
@@ -47,6 +83,13 @@ export const Profile = () => {
         }
     }
 
+    const [phone, setPhone] = useState(user?.phone)
+
+    const phoneChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPhone(e.target.value)
+        changeHandle()
+    }
+
     return (
         <div className={styles.profile}>
             <div className={styles.title}>
@@ -57,19 +100,19 @@ export const Profile = () => {
                 <div className={styles.grid}>
                     <label htmlFor="name">
                         Имя
-                        <Input defaultValue={user?.firstName} onChange={changeHandle} id='name' />
+                        <Input defaultValue={user?.firstName} onChange={changeHandle} id='name' name='firstName' />
                     </label>
-                    <label htmlFor="firstName">
+                    <label htmlFor="lastName">
                         Фамилия
-                        <Input defaultValue={user?.lastName} onChange={changeHandle} id='lastName' />
+                        <Input defaultValue={user?.lastName} onChange={changeHandle} id='lastName' name='lastName' />
                     </label>
                     <label htmlFor="email">
                         Email
-                        <Input defaultValue={user?.email} onChange={changeHandle} id='email' />
+                        <Input defaultValue={user?.email} onChange={changeHandle} id='email' name='email' />
                     </label>
                     <label htmlFor="phone">
                         Номер телефона
-                        <Input defaultValue={user?.phone} onChange={changeHandle} id='phone' />
+                        <Input value={mapPhone(phone || '')} onChange={phoneChangeHandle} id='phone' name='phone' />
                     </label>
                 </div>
                 <div className='row' style={{ marginTop: '28px', display: 'grid', gridTemplateColumns: '1fr 1fr', maxWidth: '30%' }}>

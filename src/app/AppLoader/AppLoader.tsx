@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { AppRouter } from "../router/AppRouter"
 import { configureTokenInterceptors } from "../lib/tokenInterceptors"
 import { useAppDispatch } from "../hooks/storeHooks"
-import { getUserThunk } from "@/features/user/getUser"
+import { initStateThunk } from "@/features/initState"
 
 
 const AppLoader = () => {
-
-    const [loading, setLoading] = useState(true)
 
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         configureTokenInterceptors()
-        dispatch(getUserThunk())
+        dispatch(initStateThunk())
     }, [])
 
     // if (loading) {

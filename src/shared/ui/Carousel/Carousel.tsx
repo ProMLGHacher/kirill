@@ -1,7 +1,7 @@
 import { ArrowIcon } from '@/shared/svg/Arrow';
 import styles from './Carousel.module.scss';
 import { useState } from 'react';
-import { classNames } from '@/shared/utils/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 export type CarouselProps = {
     imageUrls: string[];

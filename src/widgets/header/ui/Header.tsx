@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import styles from './Header.module.scss'
 import Logo from '@/shared/ui/Logo/Logo'
-import { classNames } from '@/shared/utils/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppSelector } from '@/app/hooks/storeHooks'
 import { selectIsAuthorized } from '@/entities/tokens'
 

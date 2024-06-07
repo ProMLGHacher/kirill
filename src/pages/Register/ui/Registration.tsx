@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/utils/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import styles from './Registration.module.scss'
 import { useActionState } from 'react'
 import { useAppDispatch } from '@/app/hooks/storeHooks'

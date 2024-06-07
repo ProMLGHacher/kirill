@@ -5,24 +5,27 @@ import { isAxiosError } from "axios";
 import { getUserThunk } from "../../getUser";
 
 type Props = {
-    firstName: string
-    lastName: string
+    phone: string
 }
 
-export const updateUserThunk = createAsyncThunk<void, Props, ThunkConfig>(
-    'user/updateUserThunk',
+export const updateUserPhoneThunk = createAsyncThunk<void, Props, ThunkConfig>(
+    'user/updateUserPhoneThunk',
     async (body, { dispatch, rejectWithValue }) => {
         try {
-            const user = await userApi.updateUserData(body)
+            if (body.phone.length !== 10 || !Number.isInteger(Number(body.phone))) {
+                throw new Error('Некорректный номер телефона')
+            }
+            const user = await userApi.updatePhone({ phoneNumber: body.phone })
             // dispatch(setUser(user))
             dispatch(getUserThunk())
-        } catch (error) {
-            console.error('user/updateUserThunk', error);
+        } catch (error: any) {
+            console.error('user/updateUserPhoneThunk', error);
             if (isAxiosError(error)) {
                 if (error.response?.status === 400) {
                     return rejectWithValue('Некорректные данные')
                 }
             }
+            return rejectWithValue(error.message)
         }
     }
 )

@@ -1,0 +1,42 @@
+.progressBarNative {
+    width: 100%;
+    height: 47px;
+    border-radius: 40px;
+    overflow: hidden;
+    background-color: #161213;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    &::-webkit-progress-bar {
+        background-color: #161213;
+    }
+
+    &::-webkit-progress-value {
+        background-color: var(--primary);
+        border-radius: 40px;
+        transition: all 0.3s ease-in-out;
+
+    }
+
+    &::-moz-progress-bar {
+        background-color: var(--primary);
+        border-radius: 40px;
+        transition: all 0.3s ease-in-out;
+    }
+
+}
+
+.progressBarValueWrapper {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    bottom: -50%;
+    transition: all 0.3s ease-in-out;
+}
+
+.progressBarValue {
+    width: fit-content;
+    transform: translateX(-50%);
+}
+

@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/utils/classNames/classNames'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import styles from './ProductsSection.module.scss'
 import { Carousel } from '@/shared/ui/Carousel/Carousel'
 
