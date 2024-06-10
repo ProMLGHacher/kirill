@@ -9,7 +9,7 @@ const LogOutButton = (props: LogOutButtonProps) => {
     const dispatch = useAppDispatch()
 
     return (
-        <Button {...props} outlined onClick={() => { dispatch(logOutThunk()) }}>Выйти </Button>
+        <Button {...props} type='button' outlined onClick={() => { dispatch(logOutThunk()) }}>Выйти </Button>
     )
 }
 

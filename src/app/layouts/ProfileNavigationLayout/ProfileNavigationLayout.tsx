@@ -9,7 +9,7 @@ const nav = [
         title: 'Заказы'
     },
     {
-        href: '/profile',
+        href: '/profile/account',
         icon: <img style={{ width: '22px', height: '22px' }} src={'/profile-circle.svg'} alt="" />,
         title: 'Аккаунт'
     },

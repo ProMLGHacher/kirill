@@ -6,6 +6,14 @@
   width: 100%;
   background-color: transparent;
 }
+ 
+.input:focus ~ .suffixIcon {
+  display: none;
+}
+
+.input:focus.withSuffix {
+  padding-right: 16px;
+}
 
 .input {
   display: block;

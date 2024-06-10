@@ -7,6 +7,8 @@ import { Login } from "@/pages/Login";
 import { Registration } from "@/pages/Register";
 import { Profile } from "@/pages/profile";
 import { ProfileNavigationLayout } from "../layouts/ProfileNavigationLayout/ProfileNavigationLayout";
+import { Security } from "@/pages/Security";
+import Skeleton from "@/shared/ui/Skeleton/Skeleton";
 
 
 const routes: Route[] = [
@@ -21,13 +23,24 @@ const routes: Route[] = [
                 roles: ["Guest", "Admin", "User"]
             },
             {
-                path: '/profile',
+                path: '/profile/',
                 element: <ProfileNavigationLayout />,
                 roles: ["Admin", "User"],
+                skeleton: <Skeleton />,
                 childrens: [
                     {
                         path: '/profile/',
+                        element: <Navigate to={'/profile/account'} />,
+                        roles: ['Admin', 'User'],
+                    },
+                    {
+                        path: '/profile/account',
                         element: <Profile />,
+                        roles: ['Admin', 'User'],
+                    },
+                    {
+                        path: '/profile/security',
+                        element: <Security />,
                         roles: ['Admin', 'User']
                     }
                 ]

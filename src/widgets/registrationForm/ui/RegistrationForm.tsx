@@ -81,11 +81,23 @@ export const RegistrationForm = () => {
         <form action={submitRequestRegistrationAction} className={styles.form}>
             <h1>Регистрация</h1>
             <div className={styles.flex}>
-                <Input placeholder='Имя' name='name' required />
-                <Input placeholder='Фамилия' name='firstname' required />
+                <label htmlFor="name">
+                    Имя
+                    <Input placeholder='Имя' name='name' required />
+                </label>
+                <label htmlFor="firstname">
+                    Фамилия
+                    <Input placeholder='Фамилия' name='firstname' required />
+                </label>
             </div>
-            <Input placeholder='Email' type='email' name='email' required />
-            <Input placeholder='Пароль' type='password' name='password' required />
+            <label htmlFor="email">
+                Email
+                <Input placeholder='Email' type='email' name='email' required />
+            </label>
+            <label htmlFor="password">
+                Пароль
+                <Input placeholder='Пароль' type='password' name='password' required />
+            </label>
             <Button isPending={requestRegistrationPending}>Зарегистрироваться</Button>
             <Link to={'/login'} style={{ textAlign: 'center', color: 'white', textDecoration: 'underline' }}>Уже есть аккаунт?</Link>
             <p style={{ textAlign: 'center', color: 'red' }}>{requestRegistrationError}</p>

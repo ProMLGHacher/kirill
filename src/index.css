@@ -61,3 +61,12 @@ select::-ms-expand {
 .primary {
   color: var(--primary);
 }
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: white;
+  width: 100%;
+}
+

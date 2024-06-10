@@ -5,6 +5,7 @@ import Button from '@/shared/ui/Button/Button'
 import { useActionState } from 'react'
 import { useAppDispatch } from '@/app/hooks/storeHooks'
 import { loginThunk } from '@/features/auth/login'
+import { Link } from 'react-router-dom'
 
 export const Login = () => {
 
@@ -36,10 +37,17 @@ export const Login = () => {
         <div className={classNames(styles.login, ['container'])}>
             <form action={submitAction} className={styles.form}>
                 <h1>Вход</h1>
-                <Input placeholder='Email' type='email' name='email' />
-                <Input placeholder='Пароль' type='password' name='password' />
+                <label htmlFor="email">
+                    Email
+                    <Input placeholder='Email' type='email' name='email' required />
+                </label>
+                <label htmlFor="password">
+                    Пароль
+                    <Input placeholder='Пароль' type='password' name='password' required />
+                </label>
                 <Button style={{ width: '50%' }} isPending={isPending}>Войти</Button>
                 <p style={{ textAlign: 'center', color: 'red' }}>{error}</p>
+                <Link to={'/registration'} style={{ textAlign: 'center', color: 'white', textDecoration: 'underline' }}>Зарегистрироваться</Link>
             </form>
         </div>
     )

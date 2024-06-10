@@ -26,7 +26,7 @@ export const Profile = () => {
             setTimeout(() => {
                 setIsSuccess(false)
                 setDataChanged(false)
-            }, 1500)
+            }, 1700)
         }
     }, [isSuccess])
 
@@ -119,19 +119,19 @@ export const Profile = () => {
                 <div className={styles.grid}>
                     <label htmlFor="name">
                         Имя
-                        <Input defaultValue={user?.firstName} onChange={changeHandle} id='name' name='firstName' />
+                        <Input defaultValue={user?.firstName} onChange={changeHandle} editableIcon id='name' name='firstName' required />
                     </label>
                     <label htmlFor="lastName">
                         Фамилия
-                        <Input defaultValue={user?.lastName} onChange={changeHandle} id='lastName' name='lastName' />
+                        <Input defaultValue={user?.lastName} onChange={changeHandle} editableIcon id='lastName' name='lastName' required />
                     </label>
                     <label htmlFor="email">
                         Email
-                        <Input defaultValue={user?.email} onChange={changeHandle} id='email' name='email' />
+                        <Input defaultValue={user?.email} onChange={changeHandle} editableIcon id='email' name='email' required />
                     </label>
                     <label htmlFor="phone">
                         Номер телефона
-                        <Input value={mapPhone(phone || '')} onChange={phoneChangeHandle} id='phone' name='phone' />
+                        <Input value={mapPhone(phone || '')} onChange={phoneChangeHandle} editableIcon id='phone' name='phone' />
                     </label>
                 </div>
                 <div style={{ marginTop: '28px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', maxWidth: '30%' }}>
