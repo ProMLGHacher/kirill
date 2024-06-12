@@ -7,12 +7,15 @@ import Button from '@/shared/ui/Button/Button'
 export const PlotCalculator = () => {
 
     const [progress, setProgress] = useState<number>(0)
-
     const [size, setSize] = useState<string | undefined>()
+    const [graniteColor, setGraniteColor] = useState<'White' | 'Black' | 'Grey' | undefined>()
+    const [aditionalServices, setAditionalServices] = useState<'Yes' | 'No' | undefined>()
 
 
+    const [graniteColorTemp, setGraniteColorTemp] = useState<'White' | 'Black' | 'Grey' | undefined>()
     const [tempSize, setTempSize] = useState<string>('Size0_8x1_1')
     const [tempSizeOther, setTempSizeOther] = useState<string>('')
+    const [aditionalServicesTemp, setAditionalServicesTemp] = useState<'Yes' | 'No' | undefined>()
 
     const onSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTempSize(e.target.value)
@@ -36,6 +39,22 @@ export const PlotCalculator = () => {
         }
     }
 
+    const onColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value === 'White') {
+            setGraniteColorTemp('White')
+        } else if (e.target.value === 'Black') {
+            setGraniteColorTemp('Black')
+        } else if (e.target.value === 'Grey') {
+            setGraniteColorTemp('Grey')
+        }
+    }
+
+    const colorFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setGraniteColor(graniteColorTemp)
+        setProgress(prev => prev + 20)
+    }
+
 
 
     return <div className={styles.plotCalculator}>
@@ -43,7 +62,7 @@ export const PlotCalculator = () => {
         <p>Выберите необходимые параметры и получите итоговую стоимость</p>
         <ProgressBar progress={progress} />
         {
-            size || <form className={classNames(styles.form, [styles.sizeForm])} onSubmit={sizeFormSubmit}>
+            !!size || <form className={classNames(styles.form, [styles.sizeForm])} onSubmit={sizeFormSubmit}>
                 <h5>Укажите размер участка:</h5>
                 <label className={styles.sizeLabel} htmlFor="Size0_8x1_1">
                     <input onChange={onSizeChange} id='Size0_8x1_1' type="radio" name="plotsize" defaultChecked value="Size0_8x1_1" />
@@ -69,6 +88,42 @@ export const PlotCalculator = () => {
                     <input onChange={onSizeChange} className={styles.otherSizeInputRadio} id='Other' type="radio" name="plotsize" value="Other" />
                     <span className={styles.otherSizeText}>Другой</span>
                     <input onChange={onSizeChangeOther} name='otherSize' className={styles.otherSizeInput} type="text" placeholder="Ширина*Длина" />
+                </label>
+                <Button type='submit' variant='secondary' rouded='xl' style={{ paddingInline: '50px', alignSelf: 'center' }}>Далее</Button>
+            </form>
+        }
+        {
+            !Boolean(size) || Boolean(graniteColor) || <form className={classNames(styles.form, [styles.sizeForm])} onSubmit={colorFormSubmit}>
+                <h5>Укажите цвет гранита:</h5>
+                <label className={styles.sizeLabel} htmlFor="White">
+                    <input onChange={onColorChange} id='White' type="radio" name="plotColor" defaultChecked value="White" />
+                    White
+                </label>
+                <label className={styles.sizeLabel} htmlFor="Black">
+                    <input onChange={onColorChange} id='Black' type="radio" name="plotColor" value="Black" />
+                    Black
+                </label>
+                <label className={styles.sizeLabel} htmlFor="Grey">
+                    <input onChange={onColorChange} id='Grey' type="radio" name="plotColor" value="Grey" />
+                    Grey
+                </label>
+                <Button type='submit' variant='secondary' rouded='xl' style={{ paddingInline: '50px', alignSelf: 'center' }}>Далее</Button>
+            </form>
+        }
+        {
+            !Boolean(size) || !Boolean(graniteColor) || Boolean(aditionalServices) || <form className={classNames(styles.form, [styles.sizeForm])} onSubmit={colorFormSubmit}>
+                <h5>Укажите дополнительные услуги:</h5>
+                <label className={styles.sizeLabel} htmlFor="White">
+                    <input onChange={onColorChange} id='White' type="checkbox" defaultChecked value="White" />
+                    White
+                </label>
+                <label className={styles.sizeLabel} htmlFor="Black">
+                    <input onChange={onColorChange} id='Black' type="checkbox" value="Black" />
+                    Black
+                </label>
+                <label className={styles.sizeLabel} htmlFor="Grey">
+                    <input onChange={onColorChange} id='Grey' type="checkbox" value="Grey" />
+                    Grey
                 </label>
                 <Button type='submit' variant='secondary' rouded='xl' style={{ paddingInline: '50px', alignSelf: 'center' }}>Далее</Button>
             </form>

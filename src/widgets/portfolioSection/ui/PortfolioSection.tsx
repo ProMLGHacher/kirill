@@ -1,10 +1,10 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
-import styles from './ProductsSection.module.scss'
-import { MaterialId } from '@/entities/materail/model/types'
-import { PortfolioItemId } from '@/entities/portfolio/model/types'
-import { PortfoliCard } from '@/entities/portfolio/ui/PortfolioCard'
+import styles from './PortfolioSection.module.scss'
+import { MaterialId } from '@/entities/materail'
+import { PortfolioItemId } from '@/entities/portfolio'
+import { PortfoliCard } from '@/entities/portfolio'
 
-export const ProductsSection = () => {
+export const PortfolioSection = () => {
     return (
         <section className={classNames(styles.productssection, ['container'])}>
             <h3 className={styles.title}><span className='primary'>Уникальные</span> памятники, хранящие память о дорогих сердцу людях</h3>

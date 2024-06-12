@@ -1,1 +1,1 @@
-export type { Material } from "./model/types";
+export type { Material, MaterialId } from "./model/types";
