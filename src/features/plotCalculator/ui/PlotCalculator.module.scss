@@ -1,0 +1,38 @@
+.plotCalculator {
+    width: 90%;
+    margin-inline: auto;
+}
+
+.form {
+    margin-top: 40px;
+
+    &.sizeForm {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+}
+
+.sizeLabel {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.otherSizeInput {
+    display: none;
+}
+
+.otherSizeText {
+    display: inline;
+}
+
+.otherSizeInputRadio:checked ~ .otherSizeText {
+    display: none;
+}
+
+.otherSizeInputRadio:checked ~ .otherSizeInput {
+    display: inline;
+}

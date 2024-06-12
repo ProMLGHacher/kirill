@@ -1,3 +1,4 @@
+import { PlotCalculator } from "@/features/plotCalculator"
 import MainSection from "./components/MainSection/MainSection"
 import { ProductsSection } from "./components/ProductsSection/ProductsSection"
 
@@ -6,6 +7,7 @@ export const Main = () => {
         <main style={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '20px'}}>
             <MainSection />
             <ProductsSection />
+            <PlotCalculator />
         </main>
     )
 }

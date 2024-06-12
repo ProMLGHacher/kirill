@@ -38,5 +38,10 @@
 .progressBarValue {
     width: fit-content;
     transform: translateX(-50%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.progressBarValueZero {
+    transform: translateX(0);
 }
 
