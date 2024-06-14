@@ -57,7 +57,7 @@ export const PlotCalculator = () => {
 
 
 
-    return <div className={styles.plotCalculator}>
+    return <div className={styles.plotCalculator} >
         <h2>Рассчитайте стоимость проекта</h2>
         <p>Выберите необходимые параметры и получите итоговую стоимость</p>
         <ProgressBar progress={progress} />
@@ -89,7 +89,7 @@ export const PlotCalculator = () => {
                     <span className={styles.otherSizeText}>Другой</span>
                     <input onChange={onSizeChangeOther} name='otherSize' className={styles.otherSizeInput} type="text" placeholder="Ширина*Длина" />
                 </label>
-                <Button type='submit' variant='secondary' rouded='xl' style={{ paddingInline: '50px', alignSelf: 'center' }}>Далее</Button>
+                <Button type='submit' variant='secondary' rounded='xl' style={{ paddingInline: '50px', alignSelf: 'center' }}>Далее</Button>
             </form>
         }
         {
@@ -107,7 +107,7 @@ export const PlotCalculator = () => {
                     <input onChange={onColorChange} id='Grey' type="radio" name="plotColor" value="Grey" />
                     Grey
                 </label>
-                <Button type='submit' variant='secondary' rouded='xl' style={{ paddingInline: '50px', alignSelf: 'center' }}>Далее</Button>
+                <Button type='submit' variant='secondary' rounded='xl' style={{ paddingInline: '50px', alignSelf: 'center' }}>Далее</Button>
             </form>
         }
         {
@@ -125,7 +125,7 @@ export const PlotCalculator = () => {
                     <input onChange={onColorChange} id='Grey' type="checkbox" value="Grey" />
                     Grey
                 </label>
-                <Button type='submit' variant='secondary' rouded='xl' style={{ paddingInline: '50px', alignSelf: 'center' }}>Далее</Button>
+                <Button type='submit' variant='secondary' rounded='xl' style={{ paddingInline: '50px', alignSelf: 'center' }}>Далее</Button>
             </form>
         }
     </div>
