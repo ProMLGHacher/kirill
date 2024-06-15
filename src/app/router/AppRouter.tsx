@@ -9,6 +9,7 @@ import { Profile } from "@/pages/profile";
 import { ProfileNavigationLayout } from "../layouts/ProfileNavigationLayout/ProfileNavigationLayout";
 import { Security } from "@/pages/Security";
 import Skeleton from "@/shared/ui/Skeleton/Skeleton";
+import { PortfolioDetails } from "@/pages/prtfolioDetails/ui/PortfolioDetails";
 
 
 const routes: Route[] = [
@@ -20,6 +21,11 @@ const routes: Route[] = [
             {
                 path: '/',
                 element: <Main />,
+                roles: ["Guest", "Admin", "User"]
+            },
+            {
+                path: '/portfolio/:id',
+                element: <PortfolioDetails />,
                 roles: ["Guest", "Admin", "User"]
             },
             {

@@ -7,6 +7,7 @@ export type PortfolioItem = {
     images: string[];
     title: string;
     place: string;
-    materials: Material[]
+    materials: Material[],
+    description: string
 }
 
