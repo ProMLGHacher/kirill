@@ -1,14 +1,15 @@
 import { ArrowIcon } from '@/shared/svg/Arrow';
 import styles from './Carousel.module.scss';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 export type CarouselProps = {
     imageUrls: string[];
+    style?: CSSProperties;
 }
 
 export const Carousel = (
-    { imageUrls }: CarouselProps
+    { imageUrls, style }: CarouselProps
 ) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,7 +24,7 @@ export const Carousel = (
         setCurrentIndex(currentIndex + 1);
     }
 
-    return <div className={classNames(styles.carousel, ['container'])}>
+    return <div style={style} className={classNames(styles.carousel, ['container'])}>
         <button onClick={handlePrevButtonClick} className={classNames(styles.carousel__button, {
             [styles.carousel__button_disabled]: currentIndex === 0
         }, [styles.carousel__button_left])}>

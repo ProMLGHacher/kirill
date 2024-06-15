@@ -26,7 +26,7 @@ export const ServiceCard = ({ service, index }: ServiceProps) => {
             <span style={{ fontWeight: '500', fontSize: '14px' }}>{index.toString().padStart(2, '0')}</span>
             <p style={{ fontWeight: '500', fontSize: '18px', textDecoration: 'underline' }}>{service.name}</p>
         </div>
-        <Button style={{ width: '90%' }} rounded="xl" variant="tertiary" color="white" outlined>oij</Button>
+        <Button style={{ width: '90%' }} rounded="xl" variant="tertiary" color="white" outlined>Оставить заявку</Button>
     </div>
 }
 

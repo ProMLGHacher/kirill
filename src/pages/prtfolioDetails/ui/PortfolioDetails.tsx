@@ -1,13 +1,18 @@
-import { PortfolioItem, PortfolioItemId } from '@/entities/portfolio'
+import { PortfolioItemId } from '@/entities/portfolio'
 import styles from './PortfolioDetails.module.scss'
 import { Carousel } from '@/shared/ui/Carousel/Carousel'
 import Button from '@/shared/ui/Button/Button'
 import { PortfolioSection } from '@/widgets/portfolioSection'
 import { useParams } from 'react-router-dom'
 import { MaterialId } from '@/entities/materail/model/types'
+import { useEffect } from 'react'
 
 
 export const PortfolioDetails = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const { id } = useParams()
     const portfolio = {
@@ -43,11 +48,11 @@ export const PortfolioDetails = () => {
 
     return (
         <div className={styles.container}>
-            <div className={'container'} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                <div>
+            <div className={'container'} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <p>Главная – Наши Работы – {portfolio.title}</p>
-                    <h1>{portfolio.title}</h1>
-                    <div>
+                    <h1 style={{ marginTop: '55px' }}>{portfolio.title}</h1>
+                    <div style={{ display: 'flex', gap: '20px', marginTop: '40px' }}>
                         <div>
                             <p>Место установки:</p>
                             <p>{portfolio.place}</p>
@@ -57,12 +62,14 @@ export const PortfolioDetails = () => {
                             <p>{portfolio.materials.map((material) => material.name).join(', ')}</p>
                         </div>
                     </div>
-                    <p>{portfolio.description}</p>
-                    <Button>Узнать стоимость</Button>
+                    <p style={{ marginTop: '40px' }}>{`portfolio.descriptiol `.repeat(100)}</p>
+                    <Button style={{ marginTop: '46px' }}>Узнать стоимость</Button>
                 </div>
-                <Carousel imageUrls={portfolio.images} />
+                <div style={{ position: 'relative', height: '100%' }}>
+                    <Carousel style={{ position: 'sticky', top: '50px' }} imageUrls={portfolio.images} />
+                </div>
             </div>
-            <PortfolioSection />
+            <PortfolioSection id='asdas' />
         </div>
     )
 }

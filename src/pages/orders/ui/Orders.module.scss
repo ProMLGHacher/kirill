@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    margin-bottom: 30px;
+
+    &>h1 {
+        font-weight: 600;
+        font-size: 20px;
+    }
+}

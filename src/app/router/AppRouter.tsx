@@ -10,6 +10,7 @@ import { ProfileNavigationLayout } from "../layouts/ProfileNavigationLayout/Prof
 import { Security } from "@/pages/Security";
 import Skeleton from "@/shared/ui/Skeleton/Skeleton";
 import { PortfolioDetails } from "@/pages/prtfolioDetails/ui/PortfolioDetails";
+import { Orders } from "@/pages/orders";
 
 
 const routes: Route[] = [
@@ -42,6 +43,11 @@ const routes: Route[] = [
                     {
                         path: '/profile/account',
                         element: <Profile />,
+                        roles: ['Admin', 'User'],
+                    },
+                    {
+                        path: '/profile/orders',
+                        element: <Orders />,
                         roles: ['Admin', 'User'],
                     },
                     {
