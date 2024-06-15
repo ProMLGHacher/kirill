@@ -25,6 +25,7 @@ export const PortfolioSection = () => {
                         'https://feature-sliced.design/ru/assets/images/visual_schema-e826067f573946613dcdc76e3f585082.jpg',
                         'https://habrastorage.org/r/w1560/webt/jc/hw/st/jchwst6a3nwlxlscnmuw5tdhmry.png',
                     ],
+                    description: 'Портфолио',
                     id: '1231231' as PortfolioItemId,
                     materials: [
                         {
@@ -55,6 +56,7 @@ export const PortfolioSection = () => {
                         'https://habrastorage.org/r/w1560/webt/jc/hw/st/jchwst6a3nwlxlscnmuw5tdhmry.png',
                     ],
                     id: '1231231' as PortfolioItemId,
+                    description: 'Портфолио',
                     materials: [
                         {
                             id: 'q423423' as MaterialId,
@@ -84,6 +86,7 @@ export const PortfolioSection = () => {
                         'https://habrastorage.org/r/w1560/webt/jc/hw/st/jchwst6a3nwlxlscnmuw5tdhmry.png',
                     ],
                     id: '1231231' as PortfolioItemId,
+                    description: 'Портфолио',
                     materials: [
                         {
                             id: 'q423423' as MaterialId,
