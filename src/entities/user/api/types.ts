@@ -27,4 +27,10 @@ export type VerifyUserData = {
     identifier: string,
     code: string,
     method: Email
-  }
+}
+
+export type UpdateUserPasswordData = {
+    oldPassword: string
+    newPassword: string
+}
+

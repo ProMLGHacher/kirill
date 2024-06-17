@@ -8,6 +8,6 @@ export type PortfolioItem = {
     title: string;
     place: string;
     materials: Material[],
-    description: string
+    description?: string
 }
 

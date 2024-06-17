@@ -4,6 +4,7 @@ import { useAppDispatch } from '@/app/hooks/storeHooks'
 import LogOutButton from '@/features/logOut/ui/LogOutButton'
 import Button from '@/shared/ui/Button/Button'
 import { useEffect, useState, useActionState, useRef } from 'react'
+import { userApi } from '@/entities/user'
 
 export const Security = () => {
 
@@ -31,19 +32,21 @@ export const Security = () => {
                 return 'Не все данные введены'
             }
 
-            // try {
-            //     if (firstName && lastName && (user?.firstName !== firstName || user?.lastName !== lastName)) {
-            //         await dispatch(updateUserThunk({
-            //             firstName: firstName,
-            //             lastName: lastName
-            //         })).unwrap()
-            //     }
-            // } catch (error) {
-            //     console.log(`${error}`);
+            try {
+                const responce = await userApi.changePassword({
+                    oldPassword: password,
+                    newPassword: newPassword
+                })
 
-            //     setDataChanged(false)
-            //     return `${error}`
-            // }
+                if (responce === 200) {
+                    setIsSuccess(true)
+                }
+            } catch (error) {
+                console.log(`${error}`);
+
+                setDataChanged(false)
+                return `${error}`
+            }
 
             setIsSuccess(true)
 
@@ -91,6 +94,7 @@ export const Security = () => {
                 <Button full isPending={isPending} className={styles.saveButton} disabled={!dataChanged} variant={isSuccess ? 'success' : 'primary'} >{isSuccess ? 'Успешно' : 'Сохранить'}</Button>
                 <LogOutButton full />
             </div>
+            {error && <p className={styles.error}>{error}</p>}
         </form>
     </div>
 }

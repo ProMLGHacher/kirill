@@ -1,8 +1,32 @@
 import { OrderHistoryCard } from '@/entities/orderHistory/ui/OrderHistoryItem'
 import styles from './Orders.module.scss'
-import { OrderHistoryItemId } from '@/entities/orderHistory/model/types'
+import { OrderHistory, OrderHistoryItemId } from '@/entities/orderHistory/model/types'
+import { useEffect, useState } from 'react'
+import { $api } from '@/shared/api/api'
 
 export const Orders = () => {
+
+    const [orders, setOrders] = useState<OrderHistory>()
+
+    useEffect(() => {
+        $api.get<{
+            "count": number,
+            "offset": 0,
+            "total": 0,
+            "items": [
+              {
+                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "memorialName": "string",
+                "clientFirstName": "string",
+                "clientLastName": "string",
+                "clientPhone": "string",
+                "stelaSize": "string",
+                "totalPrice": 0,
+                "date": "string"
+              }
+            ]
+          }>('/api/orders/me')
+    }, [])
 
     return <div className={styles.security}>
         <div className={styles.title}>

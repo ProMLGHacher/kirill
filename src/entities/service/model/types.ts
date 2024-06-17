@@ -1,7 +1,9 @@
+export type ServiceId = Brand<string, 'ServiceId'>
+
 export type Service = {
-    id: string
+    id: ServiceId
     name: string
-    price: number,
+    price: number
     cover: string
 }
 

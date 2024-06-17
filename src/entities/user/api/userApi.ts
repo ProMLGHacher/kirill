@@ -1,5 +1,5 @@
 import { $api } from "@/shared/api/api";
-import { UpdateUserData, UpdateUserEmailData, UpdateUserPhoneData, UserDto } from "./types";
+import { UpdateUserData, UpdateUserEmailData, UpdateUserPasswordData, UpdateUserPhoneData, UserDto } from "./types";
 import { User } from "../model/types";
 import { mapUser } from "../lib/mapUser";
 
@@ -23,5 +23,13 @@ export const userApi = {
     verify: async (body: UpdateUserPhoneData): Promise<User> => {
         const userDto = await $api.patch<UserDto>('/api/me/verify', body)
         return mapUser(userDto.data)
+    },
+    changePassword: async (body: UpdateUserPasswordData): Promise<number> => {
+        const responce = await $api.patch<void>('/api/change-password', {
+            password: body.oldPassword,
+            newPassword: body.newPassword
+        })
+        return responce.status
     }
 }
+

@@ -4,6 +4,7 @@ import { ProgressBar } from "@/shared/ui/ProgressBar/ProgressBar"
 import { useState } from 'react'
 import Button from '@/shared/ui/Button/Button'
 
+
 export const PlotCalculator = () => {
 
     const [progress, setProgress] = useState<number>(0)
@@ -12,10 +13,10 @@ export const PlotCalculator = () => {
     const [aditionalServices, setAditionalServices] = useState<'Yes' | 'No' | undefined>()
 
 
-    const [graniteColorTemp, setGraniteColorTemp] = useState<'White' | 'Black' | 'Grey' | undefined>()
+    const [graniteColorTemp, setGraniteColorTemp] = useState<'White' | 'Black' | 'Grey' | undefined>('Black')
     const [tempSize, setTempSize] = useState<string>('Size0_8x1_1')
     const [tempSizeOther, setTempSizeOther] = useState<string>('')
-    const [aditionalServicesTemp, setAditionalServicesTemp] = useState<'Yes' | 'No' | undefined>()
+    const [aditionalServicesTemp, setAditionalServicesTemp] = useState<'Yes' | 'No' | undefined>('No')
 
     const onSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTempSize(e.target.value)
@@ -32,10 +33,10 @@ export const PlotCalculator = () => {
         e.preventDefault()
         if (tempSizeOther) {
             setSize(tempSizeOther)
-            setProgress(prev => prev + 20)
+            setProgress(40)
         } else if (tempSize) {
             setSize(tempSize)
-            setProgress(prev => prev + 20)
+            setProgress(40)
         }
     }
 
@@ -52,7 +53,7 @@ export const PlotCalculator = () => {
     const colorFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setGraniteColor(graniteColorTemp)
-        setProgress(prev => prev + 20)
+        setProgress(98)
     }
 
 
