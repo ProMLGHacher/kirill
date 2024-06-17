@@ -1,12 +1,15 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import styles from './MemorialsSection.module.scss'
 import { MaterialId } from '@/entities/materail'
-import { PortfolioItemId } from '@/entities/portfolio'
 import { MemorialCard, MemorialItem, MemorialItemId } from '@/entities/memorial'
 import { $api } from '@/shared/api/api'
 import { useState, useEffect } from 'react'
 
-export const MemorialsSection = () => {
+export type MemorialsSectionProps = {
+    id?: string;
+}
+
+export const MemorialsSection = ({ id }: MemorialsSectionProps) => {
 
     const [memorials, setMemorials] = useState<MemorialItem[]>([])
 
@@ -19,7 +22,7 @@ export const MemorialsSection = () => {
             {
                 "id": string,
                 "name": string,
-                "images": string[],
+                "image": string,
                 "materials": {
                     "id": string,
                     "name": string,
@@ -32,12 +35,12 @@ export const MemorialsSection = () => {
             setMemorials(res.data.items.map((item) => ({
                 id: item.id as MemorialItemId,
                 name: item.name,
-                images: item.images,
+                images: item.image,
                 materials: item.materials.map((material) => ({
                     id: material.id as MaterialId,
                     name: material.name,
                 })),
-                image: item.images[0],
+                image: item.image,
                 title: item.name,
             })))
         })
@@ -51,8 +54,8 @@ export const MemorialsSection = () => {
         <section className={classNames(styles.productssection, ['container'])}>
             <h3 className={styles.title}>Предложим варианты детализированных <span className="primary">проектов</span> по вашим пожеланиям и воплотим лучший из них</h3>
             <h5 className={styles.subTitle}>Посмотрите, какие 3D-проекты мы разрабатываем</h5>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '56px' }}>
-                {memorials.map(memorial => (
+            <div className={styles.grid}>
+                {memorials.filter(memorial => memorial.id !== id).map(memorial => (
                     <MemorialCard key={memorial.id} item={memorial} />
                 ))}
             </div>

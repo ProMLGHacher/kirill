@@ -3,6 +3,7 @@ import MainSection from "./components/MainSection/MainSection"
 import { PortfolioSection } from "@/widgets/portfolioSection"
 import { MemorialsSection } from "@/widgets/memorialsSection"
 import { ServicesSection } from "@/widgets/servicesSection/import"
+import { Footer } from "@/widgets/footer"
 
 export const Main = () => {
     return (
@@ -12,6 +13,7 @@ export const Main = () => {
             <ServicesSection />
             <MemorialsSection />
             <PlotCalculator />
+            <Footer />
         </main>
     )
 }

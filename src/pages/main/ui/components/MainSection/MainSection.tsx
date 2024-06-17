@@ -13,15 +13,12 @@ const MainSection = () => {
           <Link className={classNames(styles.buttonLink, [styles.black])} to={'/more'}>Заказать</Link>
         </div>
         <div className={styles.card}>
-          <div className={styles.cardContent}>
-            <p className={styles.desc}>Посмотрите наши работы, чтобы удостовериться в нашем профессионализме</p>
-            <Link to={'/portfolio'} className={styles.portfolio}>Наши работы <div className={styles.portfolioArrow}><img src="/arrowRightUp.svg" alt="" /></div></Link>
-          </div>
-          <img src="/mini-sad-monument.png" alt="" />
+          <p className={styles.desc}>Посмотрите наши работы, чтобы удостовериться в нашем профессионализме</p>
+          <Link to={'/portfolio'} className={styles.portfolio}>Наши работы <div className={styles.portfolioArrow}><img src="/arrowRightUp.svg" alt="" /></div></Link>
         </div>
       </div>
-      <div style={{ position: 'relative' }}>
-      <img className={styles.figure} src="/figureNo1.svg" alt="" />
+      <div className={styles.figureWrapper}>
+        <img className={styles.figure} src="/figureNo1.svg" alt="" />
       </div>
     </section>
   )

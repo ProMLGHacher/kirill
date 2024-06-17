@@ -23,7 +23,7 @@ export const PortfolioSection = ({ id }: PortfolioSectionProps) => {
                 {
                     "id": string,
                     "name": string,
-                    "image": string,
+                    "images": string[],
                     "cemeteryName": string,
                     "materials":
                     {
@@ -39,7 +39,7 @@ export const PortfolioSection = ({ id }: PortfolioSectionProps) => {
             setPortfolio(res.data.items.map((item) => ({
                 id: item.id as PortfolioItemId,
                 title: item.name,
-                images: [item.image],
+                images: item.images,
                 place: item.cemeteryName,
                 materials: item.materials.map((material) => ({
                     id: material.id as MaterialId,
@@ -47,7 +47,7 @@ export const PortfolioSection = ({ id }: PortfolioSectionProps) => {
                 })),
             })).filter((item) => item.id != id))
         })
-    }, [])
+    }, [id])
 
     if (portfolio.length === 0) {
         return null
@@ -57,7 +57,7 @@ export const PortfolioSection = ({ id }: PortfolioSectionProps) => {
         <section key={id} className={classNames(styles.productssection, ['container'])}>
             <h3 className={styles.title}><span className='primary'>Уникальные</span> памятники, хранящие память о дорогих сердцу людях</h3>
             <h5 className={styles.subTitle}>За 28 лет изготовили более тысячи памятников и уже не считаем, а просто делаем свое дело. Каждый памятник — это личная история, индивидуальный подход и мастерство</h5>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '56px' }}>
+            <div className={styles.grid}>
                 {portfolio.map((item) => (
                     <PortfoliCard key={item.id} item={item} />
                 ))}

@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { MaterialId } from '@/entities/materail/model/types'
 import { useEffect, useState } from 'react'
 import { $api } from '@/shared/api/api'
+import { classNames } from '@/shared/lib/classNames/classNames'
 
 
 export const PortfolioDetails = () => {
@@ -24,8 +25,7 @@ export const PortfolioDetails = () => {
             "description": string,
             "id": string,
             "name": string,
-            "image": string,
-            "cemeteryName": string,
+            "images": string[],
             "materials":
             {
                 "id": string,
@@ -34,7 +34,7 @@ export const PortfolioDetails = () => {
                 "image": string,
                 "hex": string
             }[]
-        }>(`/portfolio/`, {
+        }>(`/api/portfolio-memorial`, {
             params: {
                 id: id
             }
@@ -43,21 +43,24 @@ export const PortfolioDetails = () => {
                 description: res.data.description,
                 id: res.data.id as PortfolioItemId,
                 title: res.data.name,
-                images: [res.data.image],
-                place: res.data.cemeteryName,
+                images: res.data.images,
+                place: res.data.name,
                 materials: res.data.materials.map((mat) => ({
                     id: mat.id as MaterialId,
                     name: mat.name,
                 })),
             })
         })
-    }, [])
+    }, [id])
 
     return (
-        <div className={styles.container}>
-            <div className={'container'} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', alignItems: 'center' }}>
+        <div className={''}>
+            <div className={classNames(styles.container, ['container'])}>
+                <div className={styles.mobile} style={{ position: 'relative', height: '100%' }}>
+                    <Carousel style={{ position: 'sticky', top: '50px' }} imageUrls={portfolio?.images ?? []} />
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <p>Главная – Наши Работы – {portfolio?.title}</p>
+                    <p className={styles.breadcrumbs}>Главная – Наши Работы – {portfolio?.title}</p>
                     <h1 style={{ marginTop: '55px' }}>{portfolio?.title}</h1>
                     <div style={{ display: 'flex', gap: '20px', marginTop: '40px' }}>
                         <div>
@@ -69,14 +72,14 @@ export const PortfolioDetails = () => {
                             <p>{portfolio?.materials.map((material) => material.name).join(', ')}</p>
                         </div>
                     </div>
-                    <p style={{ marginTop: '40px' }}>{`portfolio.descriptiol `.repeat(100)}</p>
+                    <p style={{ marginTop: '40px' }}>{portfolio?.description}</p>
                     <Button style={{ marginTop: '46px' }}>Узнать стоимость</Button>
                 </div>
-                <div style={{ position: 'relative', height: '100%' }}>
+                <div className={styles.desktop} style={{ position: 'relative', height: '100%' }}>
                     <Carousel style={{ position: 'sticky', top: '50px' }} imageUrls={portfolio?.images ?? []} />
                 </div>
             </div>
-            <PortfolioSection id='asdas' />
+            <PortfolioSection key={portfolio?.id} id={portfolio?.id} />
         </div>
     )
 }

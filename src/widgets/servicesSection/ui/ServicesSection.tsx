@@ -1,6 +1,7 @@
 import { Service, ServiceCard, ServiceId } from '@/entities/service'
 import { $api } from '@/shared/api/api'
 import { useState, useEffect } from 'react'
+import styles from './ServicesSection.module.scss'
 
 export const ServicesSection = () => {
 
@@ -28,9 +29,9 @@ export const ServicesSection = () => {
 
     return (
         <section className="container">
-            <h3 style={{ marginTop: '84px', fontSize: '45px', fontWeight: '500' }}>Все <span className='primary'>услуги</span> в одном месте «под ключ»</h3>
-            <p style={{ marginTop: '15px', fontSize: '24px' }}>От поиска идей до монтажа</p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px", marginTop: '30px' }}>
+            <h3 className={styles.title}>Все <span className='primary'>услуги</span> в одном месте «под ключ»</h3>
+            <p className={styles.subtitle}>От поиска идей до монтажа</p>
+            <div className={styles.grid}>
                 {services.map((service, index) => (
                     <ServiceCard key={service.id} index={index + 1} service={service} />
                 ))}

@@ -6,38 +6,49 @@ import { $api } from '@/shared/api/api'
 
 export const Orders = () => {
 
-    const [orders, setOrders] = useState<OrderHistory>()
+  const [orders, setOrders] = useState<OrderHistory>()
 
-    useEffect(() => {
-        $api.get<{
-            "count": number,
-            "offset": 0,
-            "total": 0,
-            "items": [
-              {
-                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                "memorialName": "string",
-                "clientFirstName": "string",
-                "clientLastName": "string",
-                "clientPhone": "string",
-                "stelaSize": "string",
-                "totalPrice": 0,
-                "date": "string"
-              }
-            ]
-          }>('/api/orders/me')
-    }, [])
+  useEffect(() => {
+    $api.get<{
+      "count": number,
+      "offset": number,
+      "total": number,
+      "items":
+      {
+        "id": OrderHistoryItemId,
+        "memorialName": string,
+        "clientFirstName": string,
+        urlImage: string,
+        "clientLastName": string,
+        "clientPhone": string,
+        "stelaSize": string,
+        "totalPrice": number,
+        "date": string
+      }[]
+    }>('/api/orders/me')
+      .then(res => setOrders({
+        total: res.data.total,
+        items: res.data.items.map(item => ({
+          id: item.id,
+          title: item.memorialName,
+          price: item.totalPrice,
+          image: item.urlImage,
+          createdAt: item.date,
+          updatedAt: item.date,
+        }))
+      }))
+  }, [])
 
-    return <div className={styles.security}>
-        <div className={styles.title}>
-            <img style={{ width: '22px', height: '22px' }} src={'/cart.svg'} alt="" />
-            <h1>Заказы</h1>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '20px' }}>
-            <OrderHistoryCard orderHistoryItem={{ id: '1' as OrderHistoryItemId, title: 'OrderHistoryItem', price: 100, image: 'https://via.placeholder.com/150', createdAt: '2021-01-01', updatedAt: '2021-01-01' }} />
-            <OrderHistoryCard orderHistoryItem={{ id: '2' as OrderHistoryItemId, title: 'OrderHistoryItem', price: 100, image: 'https://via.placeholder.com/150', createdAt: '2021-01-01', updatedAt: '2021-01-01' }} />
-            <OrderHistoryCard orderHistoryItem={{ id: '3' as OrderHistoryItemId, title: 'OrderHistoryItem', price: 100, image: 'https://via.placeholder.com/150', createdAt: '2021-01-01', updatedAt: '2021-01-01' }} />
-            <OrderHistoryCard orderHistoryItem={{ id: '4' as OrderHistoryItemId, title: 'OrderHistoryItem', price: 100, image: 'https://via.placeholder.com/150', createdAt: '2021-01-01', updatedAt: '2021-01-01' }} />
-        </div>
+  return <div className={styles.security}>
+    <div className={styles.title}>
+      <img style={{ width: '22px', height: '22px' }} src={'/cart.svg'} alt="" />
+      <h1>Заказы</h1>
     </div>
+    {orders?.items.length === 0 && <div className={styles.empty}>
+      <h2 style={{ color: '#fff' }}>У вас еще нет заказов</h2>
+    </div>}
+    {orders && <div className={styles.grid}>
+      {orders.items.map(order => <OrderHistoryCard key={order.id} orderHistoryItem={order} />)}
+    </div>}
+  </div>
 }

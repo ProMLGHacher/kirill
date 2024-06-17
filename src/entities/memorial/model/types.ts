@@ -7,5 +7,6 @@ export type MemorialItem = {
     image: string;
     title: string;
     materials: Material[]
+    description?: string
 }
 

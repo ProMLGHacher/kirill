@@ -11,6 +11,7 @@ import { Security } from "@/pages/Security";
 import Skeleton from "@/shared/ui/Skeleton/Skeleton";
 import { PortfolioDetails } from "@/pages/prtfolioDetails/ui/PortfolioDetails";
 import { Orders } from "@/pages/orders";
+import { MemorialDetails } from "@/pages/memorialDetails";
 
 
 const routes: Route[] = [
@@ -27,6 +28,11 @@ const routes: Route[] = [
             {
                 path: '/portfolio/:id',
                 element: <PortfolioDetails />,
+                roles: ["Guest", "Admin", "User"]
+            },
+            {
+                path: '/memorial/:id',
+                element: <MemorialDetails/>,
                 roles: ["Guest", "Admin", "User"]
             },
             {

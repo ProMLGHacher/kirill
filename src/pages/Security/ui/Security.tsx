@@ -5,6 +5,7 @@ import LogOutButton from '@/features/logOut/ui/LogOutButton'
 import Button from '@/shared/ui/Button/Button'
 import { useEffect, useState, useActionState, useRef } from 'react'
 import { userApi } from '@/entities/user'
+import { isAxiosError } from 'axios'
 
 export const Security = () => {
 
@@ -45,6 +46,12 @@ export const Security = () => {
                 console.log(`${error}`);
 
                 setDataChanged(false)
+
+                if (isAxiosError(error)) {
+                    if (error.response?.status === 400) {
+                        return 'Не верный пароль'
+                    }
+                }
                 return `${error}`
             }
 
@@ -94,7 +101,7 @@ export const Security = () => {
                 <Button full isPending={isPending} className={styles.saveButton} disabled={!dataChanged} variant={isSuccess ? 'success' : 'primary'} >{isSuccess ? 'Успешно' : 'Сохранить'}</Button>
                 <LogOutButton full />
             </div>
-            {error && <p className={styles.error}>{error}</p>}
+            {error && <p style={{ color: 'red'}} className={styles.error}>{error}</p>}
         </form>
     </div>
 }

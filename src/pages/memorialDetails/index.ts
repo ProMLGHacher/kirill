@@ -1,0 +1,1 @@
+export { MemorialDetails } from './ui/MemorialDetails'

@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import styles from './ProfileNavigationLayout.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import React from 'react'
 
 const nav = [
     {
@@ -31,7 +32,7 @@ export const ProfileNavigationLayout = () => {
                         nav.map((e, index) => <NavLink key={e.href + index} className={({ isActive }) => classNames(styles.navLink, {
                             [styles.active]: isActive
                         })} to={e.href} >
-                            {e.icon}
+                            {React.cloneElement(e.icon, { className: styles.icon })}
                             {e.title}
                         </NavLink>)
                     }

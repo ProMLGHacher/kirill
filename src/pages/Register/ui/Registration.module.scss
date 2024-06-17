@@ -1,3 +1,7 @@
 .registration {
     width: 40%;
+
+    @media screen and (max-width: 870px) {
+        width: 90%;
+    }
 }

@@ -1,8 +1,13 @@
 .asidenavigationlayout {
     display: grid;
-    grid-template-columns: 239px 1fr;
+    grid-template-columns: 240px 1fr;
     gap: 20px;
     height: 80%;
+
+    @media screen and (max-width: 870px) {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
 }
 
 .aside {
@@ -24,6 +29,35 @@
         flex-direction: column;
         gap: 27px;
     }
+
+    @media screen and (max-width: 870px) {
+        background-color: transparent;
+        padding: 0px;
+
+        &>h4 {
+            display: none;
+        }
+
+        &>nav {
+            width: 100%;
+            flex-direction: row;
+            overflow-x: scroll;
+            gap: 20px;
+            padding: 20px 0px;
+
+            & .icon {
+                display: none;
+            }
+
+            & .navLink {
+                background-color: #161213;
+                padding: 10px 20px;
+                border-radius: 15px;
+            }
+
+
+        }
+    }
 }
 
 .navLink {
@@ -39,7 +73,7 @@
         color: var(--primary);
     }
 
-    &.active img{
+    &.active img {
         filter: invert(40%) sepia(31%) saturate(843%) hue-rotate(328deg) brightness(101%) contrast(98%);
     }
 }
@@ -48,4 +82,8 @@
     background-color: #161213;
     border-radius: 15px;
     padding: 33px 100px;
+
+    @media screen and (max-width: 870px) {
+        padding: 20px;
+    }
 }

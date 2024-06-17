@@ -21,7 +21,7 @@ export const MemorialCard = (
                 <p className={styles.infoItemTitle}>Материалы</p>
                 <p className={styles.infoItemValue}>{item.materials.map((material) => material.name).join(', ')}</p>
             </div>
-            <Button variant='secondary' rounded='xl' style={{ padding: '24px 48px' }} onClick={() => navigate(`/portfolio/${item.id}`)}>Подробнее</Button>
+            <Button variant='secondary' rounded='xl' style={{ padding: '24px 48px' }} onClick={() => navigate(`/memorial/${item.id}`)}>Подробнее</Button>
         </div>
     )
 }

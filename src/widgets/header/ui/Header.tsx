@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import styles from './Header.module.scss'
 import Logo from '@/shared/ui/Logo/Logo'
 import { classNames } from '@/shared/lib/classNames/classNames'
@@ -36,6 +36,8 @@ export const Header = () => {
 
     const isAuthorized = useAppSelector(selectIsAuthorized)
 
+    const navigate = useNavigate()
+
     return (
         <header className={classNames(styles.header, ['container'])}>
             <Link to={'/'}><Logo /></Link>
@@ -48,12 +50,17 @@ export const Header = () => {
                     )
                 }
                 <Link className={styles.iconLink} to={'/cart'}>
-                    <img style={{ color:'white' }} src="/cart.svg" alt="cart link icon" />
+                    <img style={{ color: 'white' }} src="/cart.svg" alt="cart link icon" />
                 </Link>
                 <Link className={styles.iconLink} to={isAuthorized ? '/profile' : '/registration'}>
                     <img src="/profile-circle.svg" alt="profile link icon" />
                 </Link>
             </nav>
+            <div onClick={() => navigate(isAuthorized ? '/profile' : '/registration')} className={styles.burger}>
+                <span className={classNames(styles.burgerLine, [styles.burgerLine1])}></span>
+                <span className={classNames(styles.burgerLine, [styles.burgerLine2])}></span>
+                <span className={classNames(styles.burgerLine, [styles.burgerLine3])}></span>
+            </div>
         </header>
     )
 }

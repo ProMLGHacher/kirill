@@ -1,0 +1,32 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+
+    @media (max-width: 870px) {
+        display: block;
+    }
+}
+
+.mobile {
+    display: none;
+    @media (max-width: 870px) {
+        display: block;
+    }
+}
+
+.desktop {
+    @media (max-width: 870px) {
+        display: none;
+    }
+}
+
+
+.breadcrumbs {
+    @media (max-width: 870px) {
+        display: none;
+    }
+}
+
+

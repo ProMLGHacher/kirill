@@ -1,6 +1,4 @@
 .button {
-    display: grid;
-    grid-template-rows: 1fr;
     padding: 16px 20px;
     font-size: 16px;
     text-align: center;
@@ -13,6 +11,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+
+    @media screen and (max-width: 870px) {
+        padding: 16px 20px;
+    }
 
     &.loading {
         padding: 16px 28px;

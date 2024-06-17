@@ -4,6 +4,11 @@
     grid-template-columns: 1fr 1fr;
     color: white;
     gap: 18px 30px;
+
+    @media screen and (max-width: 870px) {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
 }
 
 .title {
