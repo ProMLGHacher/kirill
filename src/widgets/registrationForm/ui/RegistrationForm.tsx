@@ -80,16 +80,14 @@ export const RegistrationForm = () => {
     return (
         <form action={submitRequestRegistrationAction} className={styles.form}>
             <h1>Регистрация</h1>
-            <div className={styles.flex}>
-                <label htmlFor="name">
-                    Имя
-                    <Input placeholder='Имя' name='name' required />
-                </label>
-                <label htmlFor="firstname">
-                    Фамилия
-                    <Input placeholder='Фамилия' name='firstname' required />
-                </label>
-            </div>
+            <label htmlFor="name">
+                Имя
+                <Input placeholder='Имя' name='name' required />
+            </label>
+            <label htmlFor="firstname">
+                Фамилия
+                <Input placeholder='Фамилия' name='firstname' required />
+            </label>
             <label htmlFor="email">
                 Email
                 <Input placeholder='Email' type='email' name='email' required />
