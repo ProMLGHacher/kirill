@@ -12,6 +12,7 @@ import Skeleton from "@/shared/ui/Skeleton/Skeleton";
 import { PortfolioDetails } from "@/pages/prtfolioDetails/ui/PortfolioDetails";
 import { Orders } from "@/pages/orders";
 import { MemorialDetails } from "@/pages/memorialDetails";
+import { Cart } from "@/pages/cart";
 
 
 const routes: Route[] = [
@@ -29,6 +30,11 @@ const routes: Route[] = [
                 path: '/portfolio/:id',
                 element: <PortfolioDetails />,
                 roles: ["Guest", "Admin", "User"]
+            },
+            {
+                path: '/cart',
+                element: <Cart />,
+                roles: ["Admin", "User"]
             },
             {
                 path: '/memorial/:id',

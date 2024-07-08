@@ -23,6 +23,10 @@ export const MemorialDetails = () => {
 
     const navigate = useNavigate()
 
+    const navigateToLogin = () => {
+        navigate('/login')
+    }
+
     const [memorial, setMemorial] = useState<MemorialItem>()
 
     useEffect(() => {
@@ -73,7 +77,7 @@ export const MemorialDetails = () => {
                     <p style={{ marginTop: '40px' }}>{memorial?.description}</p>
                     <Button onClick={() => {
                         if (!isAuth) {
-                            navigate('/login')
+                            navigateToLogin()
                             return
                         }
                         $api.post('/api/order', {
