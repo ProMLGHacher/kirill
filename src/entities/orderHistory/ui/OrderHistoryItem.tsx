@@ -15,4 +15,3 @@ export const OrderHistoryCard = ({ orderHistoryItem }: OrderHistoryCardProps) =>
         </div>
     </div>
 }
-

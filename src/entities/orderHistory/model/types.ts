@@ -13,4 +13,3 @@ export type OrderHistoryItem = {
     createdAt: string
     updatedAt: string
 }
-
