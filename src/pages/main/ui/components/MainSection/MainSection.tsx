@@ -6,7 +6,7 @@ const MainSection = () => {
   return (
     <section className={classNames(styles.section, ['container'])}>
       <div>
-        <h1 className={styles.title}>Создаем <span className={styles.primary}>качественные</span> памятники на заказ</h1>
+        <h1 className={styles.title}>Создаем <span className={styles.primary}>качественные</span> памятники на заказ :)</h1>
         <h5 className={styles.subTitle}>Наша компания предлагает вам уникальную возможность выбрать и создать памятник, который будет стоять века, сохраняя память о ваших родных и близких.</h5>
         <div className={styles.buttonLinks}>
           <Link className={classNames(styles.buttonLink, [styles.gray])} to={'/more'}>Посмотреть больше</Link>
